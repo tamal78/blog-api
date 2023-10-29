@@ -9,10 +9,15 @@ mongoose.connect(process.env.mongoUrl);
 
 // Middleware
 app.use(bodyParser.json());
+app.use(express.json());
 
 // Import controllers
 const blogController = require('./controllers/blog');
 const commentController = require('./controllers/comment');
+
+app.get('/', (req, res) => {
+  res.send({ message: 'Hello from Blog Api' });
+});
 
 // Define routes
 app.post('/api/', blogController.createBlog);
